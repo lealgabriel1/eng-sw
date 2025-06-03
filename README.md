@@ -1,7 +1,8 @@
 # 🙋‍♂️ candidate-se
 
-Aplicação minimalista de voluntariado — descubra oportunidades e candidate-se de forma simples!
-
+Aplicação de uma estória de usuário da aplicação original [TEMPO BEM GASTO](https://github.com/lealgabriel1/tempo-bem-gasto) (INCOMPLETA)   
+Estória a ser feita:    
+*"Eu, como voluntário, quero visualizar uma lista de oportunidades para poder escolher onde me inscrever."*
 ---
 
 ## 💡 Funcionalidades
