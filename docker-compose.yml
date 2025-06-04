@@ -28,4 +28,14 @@ services:
     volumes:
       - ./backend:/app
 
-# TODO <- servicço do front
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+    env_file:
+      - ./frontend/.env
