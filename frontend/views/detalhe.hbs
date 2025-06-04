@@ -1,0 +1,65 @@
+<h1 class="mb-4">{{oportunidade.titulo}}</h1>
+
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">{{oportunidade.titulo}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      ONG: {{oportunidade.ong_nome}} <br>
+      <small>{{oportunidade.ong_email}}</small>
+    </h6>
+
+    <p class="card-text"><strong>Local:</strong> {{oportunidade.lugar}}</p>
+    <p class="card-text"><strong>Quando:</strong> {{formatDate oportunidade.data_realizacao}}</p>
+    <p class="card-text"><strong>Mensagem rápida:</strong> {{oportunidade.msg_rapida}}</p>
+
+    <hr>
+    <p class="card-text"><strong>Descrição completa:</strong> {{oportunidade.descricao}}</p>
+    <hr>
+
+    <p class="card-text"><strong>Pré-requisitos:</strong>
+      {{#if oportunidade.pre_reqs}}
+        <ul>
+          {{#each (split oportunidade.pre_reqs) as |req|}}
+            <li>{{req}}</li>
+          {{/each}}
+        </ul>
+      {{else}}
+        <span>Nenhum pré-requisito informado.</span>
+      {{/if}}
+    </p>
+
+    <p class="card-text"><strong>Endereço da ONG:</strong> {{oportunidade.ong_endereco}}</p>
+    <p class="card-text"><strong>Sobre a ONG:</strong> {{oportunidade.ong_descricao}}</p>
+
+    {{!-- uso do match tem e match falta --}}
+    {{#if oportunidade.match}}
+      <hr>
+      <h6 class="mb-1">Seu perfil para esta vaga:</h6>
+      <ul>
+        <li>
+          <span class="text-success fw-bold">Compatíveis:</span>
+          {{#if oportunidade.match.tem.length}}
+            {{#each oportunidade.match.tem}}
+              <span class="badge bg-success me-1">{{capitalize this}}</span>
+            {{/each}}
+          {{else}}
+            <span class="text-muted">Nenhum dos pré-requisitos.</span>
+          {{/if}}
+        </li>
+        <li>
+          <span class="text-danger fw-bold">Recomendados:</span>
+          {{#if oportunidade.match.falta.length}}
+            {{#each oportunidade.match.falta}}
+              <span class="badge bg-danger me-1">{{capitalize this}}</span>
+            {{/each}}
+          {{else}}
+            <span class="text-muted">Você possui todos os pré-requisitos!</span>
+          {{/if}}
+        </li>
+      </ul>
+    {{/if}}
+
+    <a href="/oportunidades" class="btn btn-secondary mt-3">Voltar para o feed</a>
+    <a href="/oportunidades/{{oportunidade.id}}/inscrever" class="btn btn-primary mt-3">Candidatar-se</a>
+  </div>
+</div>

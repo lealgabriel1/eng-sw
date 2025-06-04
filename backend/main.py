@@ -91,7 +91,7 @@ def detalhe_oportunidade(id: int, user_id: int = 1):  # (mockado aqui como 1)
         raise HTTPException(status_code=404, detail="Oportunidade não encontrada")
     return oportunidade
 
-### TODO: frontend: use match.tem e match.falta
+### frontend: usa match.tem e match.falta
 
 ### endpoint inscricao ###
 @api.post("/inscricoes")
