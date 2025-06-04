@@ -1,0 +1,25 @@
+<h2 class="mb-3">Editar Perfil</h2>
+{{#if sucesso}}
+  <div class="alert alert-success">Perfil atualizado com sucesso!</div>
+{{/if}}
+{{#if erro}}
+  <div class="alert alert-danger">{{erro}}</div>
+{{/if}}
+
+<form method="POST" action="/perfil/editar">
+  <div class="mb-3">
+    <label for="nome" class="form-label">Nome</label>
+    <input type="text" class="form-control" id="nome" name="nome" value="{{perfil.nome}}" required>
+  </div>
+  <div class="mb-3">
+    <label for="endereco" class="form-label">Endereço</label>
+    <input type="text" class="form-control" id="endereco" name="endereco" value="{{perfil.endereco}}">
+  </div>
+  <div class="mb-3">
+    <label for="competencias" class="form-label">Competências (separadas por vírgula)</label>
+    <input type="text" class="form-control" id="competencias" name="competencias" value="{{perfil.competencias}}">
+    <small class="form-text text-muted">Ex: Didática, Organização, Fotografia</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Salvar alterações</button>
+  <a href="/perfil" class="btn btn-secondary">Cancelar</a>
+</form>

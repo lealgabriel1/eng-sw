@@ -1,0 +1,21 @@
+<h2 class="mb-3">Meu Perfil</h2>
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">{{perfil.nome}}</h5>
+    <p class="card-text"><strong>Email:</strong> {{perfil.email}}</p>
+    <p class="card-text"><strong>CPF:</strong> {{perfil.cpf}}</p>
+    <p class="card-text"><strong>Endereço:</strong> {{perfil.endereco}}</p>
+    <p class="card-text"><strong>Competências:</strong>
+      {{#if perfil.competencias}}
+        {{#each (split perfil.competencias) as |comp|}}
+          <span class="badge bg-primary me-1">{{capitalize comp}}</span>
+        {{/each}}
+      {{else}}
+        <span class="text-muted">Nenhuma informada.</span>
+      {{/if}}
+    </p>
+    <a href="/inscricoes" class="btn btn-outline-primary mt-2 me-2">Minhas inscrições</a>
+    <a href="/perfil/editar" class="btn btn-outline-secondary mt-2">Editar perfil</a>
+  </div>
+</div>
+<a href="/oportunidades" class="btn btn-secondary">Voltar ao feed</a>

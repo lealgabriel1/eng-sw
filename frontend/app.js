@@ -2,6 +2,8 @@ const express = require('express');
 const exphbs  = require('express-handlebars');
 const path = require('path');
 const oportunidadeController = require('./controllers/oportunidadeController');
+const usuarioController = require('./controllers/usuarioController');
+const inscricaoController = require('./controllers/inscricaoController');
 
 const app = express();
 
@@ -44,6 +46,11 @@ app.get('/oportunidades/:id', oportunidadeController.detalhe);
 // rotas de inscricao
 app.get('/oportunidades/:id/inscrever', oportunidadeController.inscreverForm);
 app.post('/oportunidades/:id/inscrever', oportunidadeController.inscrever);
+//rotas de perfil
+app.get('/perfil', usuarioController.perfil);
+app.get('/inscricoes', inscricaoController.lista);
+app.get('/perfil/editar', usuarioController.editarForm);
+app.post('/perfil/editar', usuarioController.editar);
 
 const PORT = 3001;
 app.listen(PORT, () => {

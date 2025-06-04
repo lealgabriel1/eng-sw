@@ -1,0 +1,24 @@
+<h2 class="mb-4">Minhas Inscrições</h2>
+{{#if inscricoes.length}}
+  <div class="row">
+    {{#each inscricoes}}
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{titulo}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ong_nome}}</h6>
+            <p class="card-text"><strong>Local:</strong> {{lugar}}</p>
+            <p class="card-text"><strong>Mensagem enviada:</strong> {{mensagem}}</p>
+            <p class="card-text"><strong>Data de inscrição:</strong> {{formatDate data_inscricao}}</p>
+            <p class="card-text"><strong>Status:</strong> {{status}}</p>
+            <a href="/oportunidades/{{oportunidade_id}}" class="btn btn-primary btn-sm">Ver detalhes da vaga</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <div class="alert alert-info">Você ainda não fez nenhuma inscrição.</div>
+{{/if}}
+
+<a href="/perfil" class="btn btn-secondary mt-3">Voltar ao perfil</a>
