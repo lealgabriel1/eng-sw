@@ -196,3 +196,18 @@ def listar_ongs():
         ongs = cursor.fetchall()
     conn.close()
     return ongs
+
+@api.get("/ongs/{id}")
+def detalhe_ong(id: int):
+    conn = get_connection()
+    with conn.cursor() as cursor:
+        cursor.execute("""
+            SELECT id, nome, email, descricao, endereco
+            FROM ongs
+            WHERE id = %s
+        """, (id,))
+        ong = cursor.fetchone()
+    conn.close()
+    if not ong:
+        raise HTTPException(status_code=404, detail="ONG não encontrada")
+    return ong

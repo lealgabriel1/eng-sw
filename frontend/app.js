@@ -4,6 +4,7 @@ const path = require('path');
 const oportunidadeController = require('./controllers/oportunidadeController');
 const usuarioController = require('./controllers/usuarioController');
 const inscricaoController = require('./controllers/inscricaoController');
+const ongController = require('./controllers/ongController');
 
 const app = express();
 
@@ -46,11 +47,13 @@ app.get('/oportunidades/:id', oportunidadeController.detalhe);
 // rotas de inscricao
 app.get('/oportunidades/:id/inscrever', oportunidadeController.inscreverForm);
 app.post('/oportunidades/:id/inscrever', oportunidadeController.inscrever);
-//rotas de perfil
+// rotas de perfil
 app.get('/perfil', usuarioController.perfil);
 app.get('/inscricoes', inscricaoController.lista);
 app.get('/perfil/editar', usuarioController.editarForm);
 app.post('/perfil/editar', usuarioController.editar);
+// perfil da ong
+app.get('/ongs/:id', ongController.perfil);
 
 const PORT = 3001;
 app.listen(PORT, () => {
