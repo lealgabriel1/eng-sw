@@ -2,14 +2,14 @@
 <div class="row">
   {{#each oportunidades}}
     <div class="col-md-6 mb-3">
-      <div class="card">
+      <div class="card shadow rounded-3 border-0">
         <div class="card-body">
           <h5 class="card-title">{{titulo}}</h5>
           <h6 class="card-subtitle mb-2 text-muted">{{ong_nome}}</h6>
           <p class="card-text"><strong>Onde:</strong> {{lugar}}</p>
           <p class="card-text"><strong>Mensagem:</strong> {{msg_rapida}}</p>
           <p class="card-text"><strong>Quando:</strong> {{formatDate data_realizacao}}</p>
-          <a href="/oportunidades/{{id}}" class="btn btn-primary">Ver detalhes</a>
+          <a href="/oportunidades/{{id}}" class="btn btn-primary btn-sm mt-2">Ver detalhes</a>
         </div>
       </div>
     </div>

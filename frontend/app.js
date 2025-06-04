@@ -11,6 +11,7 @@ const app = express();
 // helper pra lidar com datas
 const hbs = exphbs.create({
   extname: '.hbs',
+  defaultLayout: 'main',
   helpers: {
     formatDate: function (isoString) {
       if (!isoString) return '';
