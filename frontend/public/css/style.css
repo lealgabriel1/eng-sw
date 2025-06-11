@@ -1,0 +1,120 @@
+/* FONTE MODERNA */
+body {
+  background: #FAEEDC;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #23272A;
+  margin: 0;
+}
+
+/* NAVBAR */
+.navbar {
+  background: linear-gradient(90deg, #2A4D7A 70%, #9ECFFF 100%);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 2px 12px #0001;
+  padding-bottom: 0.5rem;
+}
+.navbar-brand, .navbar-nav .nav-link {
+  color: #FAEEDC !important;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: color .2s;
+}
+.navbar-brand:hover, .navbar-nav .nav-link:hover {
+  color: #9ECFFF !important;
+}
+
+/* TITULOS */
+h1, h2, h3 {
+  color: #2A4D7A;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* CARDS DE OPORTUNIDADES */
+.card {
+  border-radius: 18px;
+  background: #fffbe9;
+  box-shadow: 0 4px 24px #2A4D7A16;
+  transition: transform .08s, box-shadow .08s;
+  border: none;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.018);
+  box-shadow: 0 8px 28px #2A4D7A29;
+}
+.card-title {
+  color: #2A4D7A;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+.card-subtitle {
+  color: #5d799d;
+  font-size: 1rem;
+}
+.card-text strong {
+  color: #2A4D7A;
+}
+
+/* BOTÕES */
+.btn-primary {
+  background: #2A4D7A;
+  border: none;
+  font-weight: 600;
+  color: #FAEEDC;
+  box-shadow: 0 2px 8px #2A4D7A22;
+  transition: color .16s, box-shadow .13s;
+}
+.btn-primary:hover {
+  color: #cde3f8;
+  background: #2A4D7A; /* fundo igual */
+  box-shadow: 0 6px 16px #2A4D7A33;
+}
+
+
+.btn, .form-control {
+  border-radius: 14px;
+}
+
+/* FORMULÁRIOS */
+.form-control {
+  border: 1.5px solid #2A4D7A20;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  transition: border .12s;
+  background: #fff;
+}
+.form-control:focus {
+  border: 1.5px solid #2A4D7A;
+  box-shadow: 0 0 8px #2A4D7A44;
+}
+
+/* AVISOS E ALERTAS */
+.alert {
+  border-radius: 12px;
+  background: #9ECFFF44;
+  color: #23272A;
+  border: none;
+  font-weight: 600;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 1.2rem 0;
+  background: #2A4D7A;
+  color: #FAEEDC;
+  margin-top: 2rem;
+  border-radius: 14px 14px 0 0;
+  letter-spacing: 1px;
+}
+
+/* MOBILE E RESPONSIVO */
+@media (max-width: 600px) {
+  .card {
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 1.4rem;
+  }
+}
