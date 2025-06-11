@@ -3,8 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from database.db import get_connection
 from pydantic import BaseModel
 from typing import Optional
+from middleware_log import log_requests
+import pytz
+from datetime import datetime
 
 api = FastAPI()
+api.middleware("http")(log_requests)
+tz_br = pytz.timezone("America/Sao_Paulo")
 
 # basemodels (pydantic)
 class InscricaoPayLoad(BaseModel):
@@ -139,6 +144,13 @@ def listar_inscricoes(user_id: int):
     #adciona status fixo "em aguardo" . . . não vai atualizar nessa versão
     for item in inscricoes:
         item["status"] = "em aguardo..."
+        dt = item.get("data_inscricao")
+        if isinstance(dt, datetime):
+            dt_utc = dt.replace(tzinfo=pytz.utc)
+            dt_br = dt_utc.astimezone(tz_br)
+            item["data_inscricao"] = dt_br.strftime("%d/%m/%Y às %H:%M")
+        else:
+            item["data_inscricao"] = "Data inválida"
     return inscricoes
 
 ### endpoints perfil ###
