@@ -5,21 +5,18 @@
   <title>{{title}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-  <link 
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-    rel="stylesheet"
-  >
-  <link
-    rel="stylesheet"
-    href="/css/style.css"  
-  >
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
-    <div class="container">
-      <a class="navbar-brand" href="/oportunidades">📢 Candidate-se</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4 shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="/oportunidades" style="gap:10px;">
+        <img src="/images/logo_escrita.png" alt="Candidate-se" height="45" style="margin-right:8px;filter:drop-shadow(0 1px 3px #0003);" />
+        <!-- para só a esfera, troque o src pelo logo_only.png -->
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,7 +32,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/inscricoes">Minhas Inscrições</a>
           </li>
-          <!-- outros links aqui -->
         </ul>
       </div>
     </div>
@@ -43,6 +39,15 @@
   <div class="container">
     {{{body}}}
   </div>
+
+  <footer>
+    Projeto desenvolvido por Gabriel Leal Leone • Lab. Engenharia de Software •
+    <a href="https://github.com/lealgabriel1/eng-sw" target="_blank" style="color: #9ECFFF; text-decoration: underline; margin-left:4px;">
+      GitHub
+    </a>
+    <!-- adicionar mais links ou infos posteriormente -->
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
