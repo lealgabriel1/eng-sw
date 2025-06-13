@@ -1,4 +1,4 @@
--- Criação do banco/USE com ajuse de encoding
+-- criação do banco/USE com ajuse de encoding
 CREATE DATABASE IF NOT EXISTS candidatese
   DEFAULT CHARACTER SET utf8mb4
   DEFAULT COLLATE utf8mb4_unicode_ci;
@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
     email VARCHAR(100) NOT NULL UNIQUE,
     cpf VARCHAR(11) NOT NULL UNIQUE,
     endereco VARCHAR(255),
-    competencias VARCHAR(255)
+    competencias VARCHAR(255),
+    foto_perfil VARCHAR(255) DEFAULT NULL
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 2a TABLE: ongs
@@ -21,7 +22,8 @@ CREATE TABLE IF NOT EXISTS ongs (
     nome VARCHAR(120) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     descricao TEXT NOT NULL,
-    endereco VARCHAR(255)
+    endereco VARCHAR(255),
+    foto_perfil VARCHAR(255) DEFAULT NULL
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 3a TABLE: oportunidades
@@ -51,15 +53,16 @@ CREATE TABLE IF NOT EXISTS inscricoes (
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Mock usuario
-INSERT INTO usuarios (nome, email, cpf, endereco, competencias) VALUES
-    ('Aluno da Silva', 'aluno@teste.com', '11122233344', 'Rua do Aluno, 53', 'Inglês, Trabalho em Equipe');
+INSERT INTO usuarios (nome, email, cpf, endereco, competencias, foto_perfil) VALUES
+    ('Aluno da Silva', 'aluno@teste.com', '11122233344', 'Rua do Aluno, 53', 'Inglês, Trabalho em Equipe', NULL);
     
 -- Mock ONG
-INSERT INTO ongs (nome, email, descricao, endereco) VALUES
-    ('ONG Alegria', 'aluno@teste.com', 'Venha ser alegre!', 'Rua da Alegria, 121'),
-    ('Projeto Luz', 'luz@projetoluz.org', 'Levando luz às comunidades carentes.', 'Travessa das Lâmpadas, 54'),
-    ('Amigos da Natureza', 'natureza@amigos.org', 'Cuidando do meio ambiente com ações locais.', 'Estrada Verde, 420'),
-    ('Mãos Unidas', 'maosunidas@ajuda.org', 'Unindo esforços para transformar vidas.', 'Rua Solidariedade, 32');
+INSERT INTO ongs (nome, email, descricao, endereco, foto_perfil) VALUES
+    ('ONG Alegria', 'aluno@teste.com', 'Venha ser alegre!', 'Rua da Alegria, 121', '/images/ong1.png'),
+    ('Projeto Luz', 'luz@projetoluz.org', 'Levando luz às comunidades carentes.', 'Travessa das Lâmpadas, 54', '/images/ong2.png'),
+    ('Amigos da Natureza', 'natureza@amigos.org', 'Cuidando do meio ambiente com ações locais.', 'Estrada Verde, 420', '/images/ong3.png'),
+    ('Mãos Unidas', 'maosunidas@ajuda.org', 'Unindo esforços para transformar vidas.', 'Rua Solidariedade, 32', '/images/ong4.png'),
+    ('ONG Ajude a ajudar', 'ajude@ajuda.org', 'Ajudando quem precisa de ajuda séria.', 'Rua da ajuda, 542', NULL);
 
 -- Mock oportunidades:
 INSERT INTO oportunidades (titulo, descricao, data_pub, data_realizacao, lugar, msg_rapida, pre_reqs, ong_id) VALUES
@@ -85,6 +88,12 @@ INSERT INTO oportunidades (titulo, descricao, data_pub, data_realizacao, lugar, 
 ('Distribuição de Alimentos', 'Ajude na organização e entrega de alimentos para famílias em situação de vulnerabilidade.', '2025-06-05 11:00:00', '2025-06-07 11:00:00', 'Centro Social Mãos Unidas, Rua Solidariedade, 32', 'Solidariedade faz bem!', 'Empatia', 4),
 ('Campanha do Agasalho', 'Participe da coleta e triagem de roupas de inverno para moradores de rua.', '2025-06-09 13:00:00', '2025-06-11 13:00:00', 'Galpão Solidário, Rua Esperança, 10', 'Aqueça vidas!', 'Organização', 4),
 ('Oficina de Empregabilidade', 'Ajude a montar currículos e simular entrevistas com jovens em busca do 1º emprego.', '2025-06-13 15:30:00', '2025-06-15 15:30:00', 'Espaço Profissionalizante Mãos Unidas', 'Ajude no 1º emprego!', 'RH, Comunicação', 4),
-('Atendimento em Abrigo', 'Ofereça apoio humano e recreativo a moradores em abrigo temporário.', '2025-06-17 17:00:00', '2025-06-19 17:00:00', 'Casa de Acolhimento São Lucas', 'Ofereça companhia e escuta!', 'Empatia', 4);
+('Atendimento em Abrigo', 'Ofereça apoio humano e recreativo a moradores em abrigo temporário.', '2025-06-17 17:00:00', '2025-06-19 17:00:00', 'Casa de Acolhimento São Lucas', 'Ofereça companhia e escuta!', 'Empatia', 4),
+
+-- ONG 5: Ajude a Ajudar (ID 5)
+('Doação de Alimentos', 'Ajude a montar e distribuir cestas básicas para famílias em situação de vulnerabilidade.', '2025-06-04 10:00:00', '2025-06-07 10:00:00', 'Sede Ajude a Ajudar, Rua da ajuda, 542', 'Doe seu tempo e solidariedade!', 'Organização, Empatia', 5),
+('Apoio Psicossocial', 'Ofereça escuta e apoio emocional para pessoas em situação de crise.', '2025-06-09 15:00:00', '2025-06-12 15:00:00', 'Centro Comunitário Ajude a Ajudar', 'Ouça e acolha!', 'Psicologia, Comunicação', 5),
+('Reforço Escolar Voluntário', 'Contribua dando aulas de reforço escolar para crianças e adolescentes atendidos pela ONG.', '2025-06-13 14:00:00', '2025-06-16 14:00:00', 'Espaço Educacional Ajude a Ajudar', 'Ensine e transforme vidas!', 'Didática, Paciência', 5),
+('Oficina de Artesanato', 'Ajude a ensinar técnicas simples de artesanato para geração de renda das famílias atendidas.', '2025-06-17 09:00:00', '2025-06-20 09:00:00', 'Sala Multiuso Ajude a Ajudar', 'Compartilhe habilidades!', 'Artesanato, Didática', 5);
 
 -- FIM

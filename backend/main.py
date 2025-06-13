@@ -51,7 +51,8 @@ def listar_oportunidades_feed():
     with conn.cursor() as cursor:
         cursor.execute("""
             SELECT 
-                o.id, o.titulo, o.lugar, o.msg_rapida, o.data_realizacao, g.nome AS ong_nome
+                o.id, o.titulo, o.lugar, o.msg_rapida, o.data_realizacao, g.nome AS ong_nome,
+                COALESCE(g.foto_perfil, '/images/placeholder_ong.png') AS foto_perfil_ong
             FROM oportunidades o
             JOIN ongs g ON o.ong_id = g.id
             ORDER BY o.data_realizacao DESC
@@ -70,7 +71,8 @@ def detalhe_oportunidade(id: int, user_id: int = 1):  # (mockado aqui como 1)
                 o.id, o.titulo, o.descricao, o.data_pub, o.data_realizacao, o.lugar,
                 o.msg_rapida, o.pre_reqs,
                 o.ong_id, g.nome AS ong_nome, g.email AS ong_email,
-                g.descricao AS ong_descricao, g.endereco AS ong_endereco
+                g.descricao AS ong_descricao, g.endereco AS ong_endereco,
+                COALESCE(g.foto_perfil, '/images/placeholder_ong.png') AS foto_perfil_ong
             FROM oportunidades o
             JOIN ongs g ON o.ong_id = g.id
             WHERE o.id = %s
@@ -159,7 +161,8 @@ def perfil(user_id: int = 1):
     conn = get_connection()
     with conn.cursor() as cursor:
         cursor.execute("""
-            SELECT id, nome, email, cpf, endereco, competencias
+            SELECT id, nome, email, cpf, endereco, competencias,
+                COALESCE(foto_perfil, '/images/placeholder_user.png') AS foto_perfil
             FROM usuarios
             WHERE id = %s
         """, (user_id,))
@@ -214,7 +217,8 @@ def detalhe_ong(id: int):
     conn = get_connection()
     with conn.cursor() as cursor:
         cursor.execute("""
-            SELECT id, nome, email, descricao, endereco
+            SELECT id, nome, email, descricao, endereco,
+                COALESCE(foto_perfil, '/images/placeholder_ong.png') AS foto_perfil
             FROM ongs
             WHERE id = %s
         """, (id,))
