@@ -172,7 +172,7 @@ footer {
   padding: 1.2rem 0;
   background: #234169;
   color: #ffffff;
-  margin-top: 2rem;    /* Mantém a margem que você pediu */
+  margin-top: 2rem;   
   border-radius: 0;
   letter-spacing: 1px;
   flex-shrink: 0;
@@ -208,4 +208,21 @@ footer {
 }
 .card-opportunity {
   min-height: 140px;
+}
+
+.avatar-ong-detail {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  border: 4px solid #E0E0E0;
+  box-shadow: 0 2px 14px #2A4D7A16;
+}
+@media (max-width: 800px) {
+  .avatar-ong-detail {
+    width: 56px;
+    height: 56px;
+    border-width: 2px;
+  }
 }

@@ -1,7 +1,14 @@
 <h1 class="titulo_d">detalhes da vaga</h1>
 
 <div class="card mb-3">
-  <div class="card-body">
+  <div class="card-body position-relative">
+    <!-- Logo da ONG no topo direito -->
+    <img 
+      src="{{oportunidade.foto_perfil_ong}}" 
+      alt="Logo da ONG" 
+      class="avatar-ong-detail position-absolute top-0 end-0 m-3"
+    />
+
     <h5 class="card-title">{{oportunidade.titulo}}</h5>
     <h6 class="card-subtitle mb-2 text-muted">
       ONG: <a href="/ongs/{{oportunidade.ong_id}}" class="link-primary fw-bold">{{oportunidade.ong_nome}}</a> <br>
