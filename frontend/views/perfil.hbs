@@ -1,21 +1,27 @@
 <h2 class="titulo_d">Meu Perfil</h2>
 <div class="card mb-4">
-  <div class="card-body">
-    <h5 class="card-title">{{perfil.nome}}</h5>
-    <p class="card-text"><strong>Email:</strong> {{perfil.email}}</p>
-    <p class="card-text"><strong>CPF:</strong> {{perfil.cpf}}</p>
-    <p class="card-text"><strong>Endereço:</strong> {{perfil.endereco}}</p>
-    <p class="card-text"><strong>Competências:</strong>
-      {{#if perfil.competencias}}
-        {{#each (split perfil.competencias) as |comp|}}
-          <span class="badge bg-primary me-1">{{capitalize comp}}</span>
-        {{/each}}
-      {{else}}
-        <span class="text-muted">Nenhuma informada.</span>
-      {{/if}}
-    </p>
-    <a href="/inscricoes" class="btn btn-outline-primary mt-2 me-2">Minhas inscrições</a>
-    <a href="/perfil/editar" class="btn btn-outline-secondary mt-2">Editar perfil</a>
+  <div class="card-body d-flex align-items-center">
+    <!-- Avatar -->
+    <div class="profile-avatar-box me-4">
+      <img src="{{perfil.foto_perfil}}" alt="Avatar do usuário" class="avatar-user">
+    </div>
+    <div>
+      <h2 class="profile-name mb-2">{{perfil.nome}}</h2>
+      <p class="profile-info mb-1"><strong>Email:</strong> {{perfil.email}}</p>
+      <p class="profile-info mb-1"><strong>CPF:</strong> {{perfil.cpf}}</p>
+      <p class="profile-info mb-1"><strong>Endereço:</strong> {{perfil.endereco}}</p>
+      <p class="profile-info mb-2"><strong>Competências:</strong>
+        {{#if perfil.competencias}}
+          {{#each (split perfil.competencias) as |comp|}}
+            <span class="badge bg-primary me-1">{{capitalize comp}}</span>
+          {{/each}}
+        {{else}}
+          <span class="text-muted">Nenhuma informada.</span>
+        {{/if}}
+      </p>
+      <a href="/inscricoes" class="btn btn-outline-primary mt-2 me-2">Minhas inscrições</a>
+      <a href="/perfil/editar" class="btn btn-outline-secondary mt-2">Editar perfil</a>
+    </div>
   </div>
 </div>
 <a href="/oportunidades" class="btn btn-secondary">Voltar ao feed</a>
