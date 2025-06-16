@@ -1,62 +1,100 @@
-# 🙋‍♂️ candidate-se
+# ➡ Candidate-se
 
-Aplicação de uma estória de usuário da aplicação original [TEMPO BEM GASTO](https://github.com/lealgabriel1/tempo-bem-gasto) (INCOMPLETA)   
-Estória a ser feita:    
-*"Eu, como voluntário, quero visualizar uma lista de oportunidades para poder escolher onde me inscrever."*
+Plataforma para conectar voluntários a oportunidades de ONGs.
 
 ---
 
-## 💡 Funcionalidades
+## Sobre o projeto
 
-- Visualização de vagas de voluntariado - RF
-- Inscrição do usuário logado em oportunidades - RF
-- Visualização e edição do perfil do usuário padrão - RNF
+O **Candidate-se** é uma aplicação de uma estória de usuário na plataforma de encontro entre voluntários e ONGs.  
+Este MVP implementa a estória principal:
 
----
-
-## 🚀 Tecnologias utilizadas
-
-- **Banco de Dados:** MySQL 8
-- **Backend:** FastAPI (Python)
-- **Frontend:** a definir
-- **Containerização:** Docker & Docker Compose
+> **"Eu, como voluntário, quero visualizar uma lista de oportunidades para poder escolher onde me inscrever."**
 
 ---
 
-## 🛠️ Como rodar o projeto (Docker)
+## Stack e arquitetura
 
-**TODO**
-
----
-
-## 👤 Usuário padrão
-
-- **Nome:** a definir
-- **Email:** a definir
-- **Endereço:** a definir
-
-*-usuário é inserido automaticamente na criação do banco-*
+* **Frontend:** Node.js, Express, Handlebars (.hbs), Bootstrap 5, CSS custom
+* **Backend:** FastAPI (Python), API RESTful
+* **Banco:** MySQL 8 (container Docker)
+* **Infra:** Docker Compose, AWS EC2, variáveis centralizadas em `.env`
+* **Outros:** Axios, scripts de backup, logs centralizados
 
 ---
 
-## 📄 Estrutura das Tabelas
+## Funcionalidades
 
-- **usuarios:** id, nome, email, endereco
-- **oportunidades:** id, titulo, descricao, local
-- **inscricoes:** id, usuario_id, oportunidade_id, data_inscricao
-
----
-
-## 📝 Notas
-
-- Backend, frontend e banco de dados rodam em containers independentes.
-- O frontend consome a API REST do backend.
+| Features                                   
+| --------------------------------------------------      
+| Listagem de oportunidades de voluntariado    ✅  | 
+| Inscrição do usuário em vagas                ✅  |
+| Visualização/edição de perfil                ✅  |
+| Log de acessos e backup automático           ✅  |
+| Deploy Docker/AWS                            ✅  |
 
 ---
 
-## 🌐 Deploy na nuvem (AWS)
+## Link de acesso
 
-**TODO**
+<>
 
 ---
 
+## Estrutura do projeto
+
+```plaintext
+frontend/     # Express, Handlebars, Bootstrap, views
+backend/      # FastAPI, models, routers, config
+db/           # Scripts SQL, dumps, backups
+.env.example  # Variáveis de ambiente
+docker-compose.yml
+README.md
+```
+
+---
+
+## API — exemplo rápido
+
+**Endpoint:**
+`GET /api/vagas`
+
+**Response:**
+
+```json
+[
+  {
+    "id": 1,
+    "titulo": "Apoio em evento",
+    "descricao": "Auxiliar na organização de evento para ONG X.",
+    "local": "São Paulo - SP"
+  },
+  ...
+]
+```
+
+*Para detalhes, consulte a [Wiki](./docs/api.md)*
+
+---
+
+## Modelagem do banco
+
+Principais tabelas:
+
+* **usuarios:** id, nome, email, endereco
+* **oportunidades:** id, titulo, descricao, local
+* **inscricoes:** id, usuario\_id, oportunidade\_id, data\_inscricao
+
+---
+
+## Deploy
+
+* Deploy em AWS EC2 via Docker Compose
+* Variáveis de ambiente em `.env`
+* Scripts de backup e log
+* Dominio e HTTPS <- TODO
+* Deploy Automatico <- TODO 
+
+---
+**Aluno:**
+Gabriel Leal
