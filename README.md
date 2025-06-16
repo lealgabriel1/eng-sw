@@ -25,19 +25,17 @@ Este MVP implementa a estória principal:
 
 ## Funcionalidades
 
-| Features                                   
-| --------------------------------------------------      
-| Listagem de oportunidades de voluntariado    ✅  | 
-| Inscrição do usuário em vagas                ✅  |
-| Visualização/edição de perfil                ✅  |
-| Log de acessos e backup automático           ✅  |
-| Deploy Docker/AWS                            ✅  |
+- Listagem de oportunidades de voluntariado
+- Inscrição do usuário em vagas
+- Visualização e edição de perfil
+- Log de acessos e backup automático
+- Deploy via Docker/AWS
 
 ---
 
 ## Link de acesso
 
- <eng-sw.lealg.xyz>
+[eng-sw.lealg.xyz](https://eng-sw.lealg.xyz)
 
 ---
 
@@ -68,8 +66,7 @@ README.md
     "titulo": "Apoio em evento",
     "descricao": "Auxiliar na organização de evento para ONG X.",
     "local": "São Paulo - SP"
-  },
-  ...
+  }
 ]
 ```
 
@@ -92,9 +89,9 @@ Principais tabelas:
 * Deploy em AWS EC2 via Docker Compose
 * Variáveis de ambiente em `.env`
 * Scripts de backup e log
-* Dominio e HTTPS <- TODO
-* Deploy Automatico <- TODO 
+* Dominio e HTTPS
+* Deploy Automatico
 
 ---
 **Aluno:**
-Gabriel Leal
+Gabriel Leal Leone
