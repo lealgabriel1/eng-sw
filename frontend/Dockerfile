@@ -8,7 +8,6 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3001
-
-# iniciar o servidor
 CMD ["node", "app.js"]
+
+EXPOSE 3001

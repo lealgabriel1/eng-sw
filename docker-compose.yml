@@ -39,5 +39,4 @@ services:
       - NODE_ENV=${NODE_ENV}
     depends_on:
       - backend
-    volumes:
-      - ./frontend:/app
+
