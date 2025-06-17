@@ -79,7 +79,7 @@ def listar_oportunidades_feed(search: str = Query(None, description="Buscar por 
 
 # oportunidades (detalhes)
 @api.get("/oportunidades/{id}")
-def detalhe_oportunidade(id: int, user_id: int = 1):  # (mockado aqui como 1)
+def detalhe_oportunidade(id: int, user_id: int = 1):  # user_id mockado
     conn = get_connection()
     with conn.cursor() as cursor:
         cursor.execute("""
@@ -99,6 +99,13 @@ def detalhe_oportunidade(id: int, user_id: int = 1):  # (mockado aqui como 1)
         cursor.execute("SELECT competencias FROM usuarios WHERE id = %s", (user_id,))
         user = cursor.fetchone()
 
+        # verificar inscrição do usuário
+        cursor.execute("""
+            SELECT 1 FROM inscricoes
+            WHERE user_id = %s AND opp_id = %s
+        """, (user_id, id))
+        inscrito = cursor.fetchone()
+
     conn.close()
 
     # verificar competencias
@@ -112,6 +119,11 @@ def detalhe_oportunidade(id: int, user_id: int = 1):  # (mockado aqui como 1)
 
     if not oportunidade:
         raise HTTPException(status_code=404, detail="Oportunidade não encontrada")
+
+    # privacidade do endereço
+    if not inscrito:
+        oportunidade["ong_endereco"] = None  # ou "Disponível após inscrição <- FRONT"
+
     return oportunidade
 
 ### frontend: usa match.tem e match.falta

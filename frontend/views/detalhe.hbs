@@ -2,7 +2,7 @@
 
 <div class="card mb-3">
   <div class="card-body position-relative">
-    <!-- Logo da ONG no topo direito -->
+    <!-- logo da ONG no topo direito -->
     <img 
       src="{{oportunidade.foto_perfil_ong}}" 
       alt="Logo da ONG" 
@@ -35,7 +35,16 @@
       {{/if}}
     </p>
 
-    <p class="card-text"><strong>Endereço da ONG:</strong> {{oportunidade.ong_endereco}}</p>
+    <!-- endereço protegido -->
+    <p class="card-text">
+      <strong>Endereço da ONG:</strong>
+      {{#if oportunidade.ong_endereco}}
+        {{oportunidade.ong_endereco}}
+      {{else}}
+        <span class="text-warning">Disponível apenas após inscrição.</span>
+      {{/if}}
+    </p>
+
     <p class="card-text"><strong>Sobre a ONG:</strong> {{oportunidade.ong_descricao}}</p>
 
     {{!-- uso do match tem e match falta --}}
