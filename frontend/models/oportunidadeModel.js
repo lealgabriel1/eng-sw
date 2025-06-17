@@ -1,8 +1,12 @@
 const axios = require('axios');
 const API_URL = process.env.API_URL || 'http://localhost:8000';
 
-exports.getFeed = async () => {
-  const res = await axios.get(`${API_URL}/oportunidades`);
+exports.getFeed = async (search = '') => {
+  let url = `${API_URL}/oportunidades`;
+  if (search) {
+    url += `?search=${encodeURIComponent(search)}`;
+  }
+  const res = await axios.get(url);
   return res.data;
 };
 
