@@ -1,4 +1,5 @@
-from fastapi import FastAPI, HTTPException
+import os
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from database.db import get_connection
 from pydantic import BaseModel
@@ -6,10 +7,14 @@ from typing import Optional
 from middleware_log import log_requests
 import pytz
 from datetime import datetime
+from better_profanity import profanity
 
 api = FastAPI()
 api.middleware("http")(log_requests)
 tz_br = pytz.timezone("America/Sao_Paulo")
+
+BADWORDS_PATH = os.path.join(os.path.dirname(__file__), "blacklist.txt")
+profanity.load_censor_words_from_file(BADWORDS_PATH)
 
 # basemodels (pydantic)
 class InscricaoPayLoad(BaseModel):
@@ -44,19 +49,30 @@ def test_connection():
 
 ### endpoints acerca das oporunidades ##
 
-# oportunidades (feed)
+# oportunidades (feed com busca)
 @api.get("/oportunidades")
-def listar_oportunidades_feed():
+def listar_oportunidades_feed(search: str = Query(None, description="Buscar por título da vaga")):
     conn = get_connection()
     with conn.cursor() as cursor:
-        cursor.execute("""
-            SELECT 
-                o.id, o.titulo, o.lugar, o.msg_rapida, o.data_realizacao, g.nome AS ong_nome,
-                COALESCE(g.foto_perfil, '/images/placeholder_ong.png') AS foto_perfil_ong
-            FROM oportunidades o
-            JOIN ongs g ON o.ong_id = g.id
-            ORDER BY o.data_realizacao DESC
-        """)
+        if search:
+            cursor.execute("""
+                SELECT 
+                    o.id, o.titulo, o.lugar, o.msg_rapida, o.data_realizacao, g.nome AS ong_nome,
+                    COALESCE(g.foto_perfil, '/images/placeholder_ong.png') AS foto_perfil_ong
+                FROM oportunidades o
+                JOIN ongs g ON o.ong_id = g.id
+                WHERE o.titulo LIKE %s
+                ORDER BY o.data_realizacao DESC
+            """, (f"%{search}%",))
+        else:
+            cursor.execute("""
+                SELECT 
+                    o.id, o.titulo, o.lugar, o.msg_rapida, o.data_realizacao, g.nome AS ong_nome,
+                    COALESCE(g.foto_perfil, '/images/placeholder_ong.png') AS foto_perfil_ong
+                FROM oportunidades o
+                JOIN ongs g ON o.ong_id = g.id
+                ORDER BY o.data_realizacao DESC
+            """)
         oportunidades = cursor.fetchall()
     conn.close()
     return oportunidades
@@ -113,11 +129,12 @@ def candidatar_inscricao(payload: InscricaoPayLoad):
             if cursor.fetchone():
                 raise HTTPException(status_code=409, detail="Já existe uma inscrição sua para esta vaga.")
 
-            # insere nova inscrição
+            # censura palavrão antes de inserir nova inscrição
+            bad_filter = profanity.censor(payload.mensagem)
             cursor.execute("""
                 INSERT INTO inscricoes (user_id, opp_id, mensagem) 
                 VALUES (%s, %s, %s)
-            """, (payload.user_id, payload.opp_id, payload.mensagem))
+            """, (payload.user_id, payload.opp_id, bad_filter))
             conn.commit()
         return {"success": True, "msg": "Inscrição realizada!"}
     finally:

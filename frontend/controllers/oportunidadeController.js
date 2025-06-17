@@ -2,8 +2,9 @@ const oportunidadeModel = require('../models/oportunidadeModel');
 
 exports.feed = async (req, res) => {
   try {
-    const oportunidades = await oportunidadeModel.getFeed();
-    res.render('oportunidades', { oportunidades });
+    const search = req.query.search || '';
+    const oportunidades = await oportunidadeModel.getFeed(search);
+    res.render('oportunidades', { oportunidades, search });
   } catch (error) {
     res.status(500).send("Erro ao carregar oportunidades: " + error.message);
   }
